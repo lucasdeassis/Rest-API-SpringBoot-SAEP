@@ -30,6 +30,7 @@ public class ParecerController {
     @RequestMapping(value="/parecer/saep/{id}", method=RequestMethod.GET)
     public String parecer(@PathVariable Long id, @RequestHeader(value="Accept") String accept, HttpServletResponse response) {
         
+    	//TODO: como responder caso o header accept nao estiver incluso?
         if (accept.equals("text/html")){
         	response.setContentType("text/html");
         	return asls.getParecerHtml(id);
