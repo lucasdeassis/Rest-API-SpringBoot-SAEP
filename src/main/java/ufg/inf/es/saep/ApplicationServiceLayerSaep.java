@@ -4,9 +4,9 @@ import java.io.InputStream;
 
 public interface ApplicationServiceLayerSaep {
 	// os metodos da interface sao similares a esses?
-	public String getParecerHtml(Long idParecer);
+	public String getDocumentoHtml(Long idDocumento, String tipoDoDocumento);
 	
 	// qual o tipo de dado esperado para o retorno de um pdf
-	public InputStream getParecerPdf(Long idParecer);
+	public InputStream getDocumentoPdf(Long idDocumento, String tipoDoDocumento);
 	
 }

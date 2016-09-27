@@ -16,12 +16,18 @@ public class ApplicationServiceLayerSaepImpl implements ApplicationServiceLayerS
 
 	//TODO: colocar o conteudo do parecer em um PDF formatado ou apenas em string pura?
 	@Override
-	public String getParecerHtml(Long idParecer) {
-		return "Parecer numero" + idParecer + "!";
+	public String getDocumentoHtml(Long idDocumento, String tipoDoDocumento) {
+            if(tipoDoDocumento.equals("parecer")){
+                return "Parecer numero " + idDocumento + "!";
+            }
+            else {
+                return "Radoc numero " + idDocumento + "!";
+            }
+                
 	}
 
 	@Override
-	public InputStream getParecerPdf(Long idParecer) {
+	public InputStream getDocumentoPdf(Long idParecer, String tipoDoDocumento) {
 	    ByteArrayOutputStream out = new ByteArrayOutputStream();            
 	    
 	    //TODO: definir o titulo do documento PDF
@@ -32,7 +38,12 @@ public class ApplicationServiceLayerSaepImpl implements ApplicationServiceLayerS
                 out);
 
             document.open();
-            document.add(new Paragraph("PDF de parecer."));
+            if(tipoDoDocumento.equals("parecer")){
+                document.add(new Paragraph("PDF de parecer."));
+            }
+            else {
+                document.add(new Paragraph("PDF do radoc."));
+            }
             document.close(); 
             
             return new ByteArrayInputStream(out.toByteArray());

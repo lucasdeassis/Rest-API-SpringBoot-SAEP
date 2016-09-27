@@ -33,11 +33,11 @@ public class ParecerController {
     	//TODO: como responder caso o header accept nao estiver incluso?
         if (accept.equals("text/html")){
         	response.setContentType("text/html");
-        	return asls.getParecerHtml(id);
+        	return asls.getDocumentoHtml(id, "parecer");
         }
         else if(accept.equals("application/pdf")){
         	// espera que o getParecerPdf de ApplicationServiceLayerSaep retorne uma stream
-        	InputStream pdfStream = asls.getParecerPdf(id);
+        	InputStream pdfStream = asls.getDocumentoPdf(id, "parecer");
         	try {
             	response.setContentType("application/pdf");
 				IOUtils.copy(pdfStream, response.getOutputStream());
