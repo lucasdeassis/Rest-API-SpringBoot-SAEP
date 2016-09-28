@@ -19,13 +19,14 @@ public class ParecerController {
 	//private static final long STATUS_OK = 200;
     //private static final String template = "Parecer %s!";
     
-    //interface responsavel apenas pelo parecer?
+    //TODO: xxxxinterface responsavel apenas pelo parecer?
     @Autowired
     private ApplicationServiceLayerSaep asls;
 
     // obter pelo header (header eh o accept - application/pdf e text/html) o formato do parecer (pdf ou html)
 
-
+    //TODO: determinar se é parecer ou radoc através da URL?
+    
     // define a url a ser acessada pelo cliente e o metodo
     @RequestMapping(value="/parecer/saep/{id}", method=RequestMethod.GET)
     public String parecer(@PathVariable Long id, @RequestHeader(value="Accept") String accept, HttpServletResponse response) {
@@ -36,12 +37,13 @@ public class ParecerController {
         	return asls.getDocumentoHtml(id, "parecer");
         }
         else if(accept.equals("application/pdf")){
-        	// espera que o getDocumentoPdf de ApplicationServiceLayerSaep retorne uma stream
+        	// TODO: espera que o getDocumentoPdf de ApplicationServiceLayerSaep retorne uma stream
         	InputStream pdfStream = asls.getDocumentoPdf(id, "parecer");
         	try {
             	response.setContentType("application/pdf");
 				IOUtils.copy(pdfStream, response.getOutputStream());
-	        	response.flushBuffer();
+            	response.setHeader("Content-Disposition", "attachment; filename=parecer.pdf");
+				response.flushBuffer();
 	        	return null;
 			} catch (IOException e) {
 				e.printStackTrace();
@@ -53,6 +55,9 @@ public class ParecerController {
         	response.setStatus(HttpStatus.NOT_ACCEPTABLE.value());
         	return "Formato Inadequado";
         }
+        
+        // TODO: qual seria a resposta após o POST de parecer? como iremos receber o parecer pela requisição ?
+        
         /*
 
 		Primeiro detectar precisamente a requisição.

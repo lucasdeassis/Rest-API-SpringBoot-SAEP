@@ -34,7 +34,7 @@ public class RadocController {
         	return asls.getDocumentoHtml(id, "RADOC");
         }
         else if(accept.equals("application/pdf")){
-        	// espera que o getDocumentoPdf de ApplicationServiceLayerSaep retorne uma stream
+        	// TODO: espera que o getDocumentoPdf de ApplicationServiceLayerSaep retorne uma stream
         	InputStream pdfStream = asls.getDocumentoPdf(id, "RADOC");
         	try {
             	response.setContentType("application/pdf");
