@@ -3,6 +3,7 @@ package ufg.inf.es.saep;
 import java.io.ByteArrayInputStream;
 import java.io.ByteArrayOutputStream;
 import java.io.InputStream;
+import java.nio.charset.StandardCharsets;
 
 import org.springframework.stereotype.Service;
 
@@ -12,22 +13,18 @@ import com.itextpdf.text.Paragraph;
 import com.itextpdf.text.pdf.PdfWriter;
 
 @Service
-public class ApplicationServiceLayerSaepImpl implements ApplicationServiceLayerSaep {
-
-	//TODO: colocar o conteudo do parecer em um PDF formatado ou apenas em string pura?
+public class RadocServiceSaepImpl implements ApplicationServiceLayerSaepRadoc {
 	@Override
-	public String getDocumentoHtml(Long idDocumento, String tipoDoDocumento) {
-            if(tipoDoDocumento.equals("parecer")){
-                return "Parecer numero " + idDocumento + "!";
-            }
-            else {
-                return "Radoc numero " + idDocumento + "!";
-            }
-                
-	}
+	public InputStream radocAsHtml(Long idDocumento) {
+					String html = "Radoc numero " + idDocumento + "!";
+	                InputStream is = new ByteArrayInputStream(html.getBytes(StandardCharsets.UTF_8));
+	                return is;
+	                
+	}                
+	
 
 	@Override
-	public InputStream getDocumentoPdf(Long idParecer, String tipoDoDocumento) {
+	public InputStream radocAsPdf(Long idParecer) {
 	    ByteArrayOutputStream out = new ByteArrayOutputStream();            
 	    
 	    //TODO: definir o titulo do documento PDF
@@ -36,14 +33,9 @@ public class ApplicationServiceLayerSaepImpl implements ApplicationServiceLayerS
 
             PdfWriter.getInstance(document,
                 out);
-
             document.open();
-            if(tipoDoDocumento.equals("parecer")){
-                document.add(new Paragraph("PDF de parecer."));
-            }
-            else {
-                document.add(new Paragraph("PDF do radoc."));
-            }
+            document.add(new Paragraph("PDF do radoc."));
+            
             document.close(); 
             
             return new ByteArrayInputStream(out.toByteArray());
