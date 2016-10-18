@@ -13,7 +13,7 @@ import com.itextpdf.text.Paragraph;
 import com.itextpdf.text.pdf.PdfWriter;
 
 @Service
-public class RadocServiceSaepImpl implements ApplicationServiceLayerSaepRadoc {
+public abstract class RadocServiceSaepImpl implements ApplicationServiceLayerSaep {
 	@Override
 	public InputStream radocAsHtml(Long idDocumento) {
 					String html = "Radoc numero " + idDocumento + "!";

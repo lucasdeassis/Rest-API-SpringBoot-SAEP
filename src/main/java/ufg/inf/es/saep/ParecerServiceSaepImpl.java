@@ -13,7 +13,7 @@ import com.itextpdf.text.Paragraph;
 import com.itextpdf.text.pdf.PdfWriter;
 
 @Service
-public class ParecerServiceSaepImpl implements ApplicationServiceLayerSaepParecer {
+public abstract class ParecerServiceSaepImpl implements ApplicationServiceLayerSaep {
 
 	@Override
 	public InputStream parecerAsHtml(Long idDocumento) {

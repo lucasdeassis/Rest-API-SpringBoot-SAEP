@@ -19,7 +19,7 @@ import org.springframework.web.bind.annotation.RestController;
 public class RadocController {
 
     @Autowired
-    private ApplicationServiceLayerSaepRadoc asls;
+    private ApplicationServiceLayerSaep asls;
 
     @RequestMapping(value="/radoc/saep/{id}", method=RequestMethod.GET, headers="Accept=text/html")
     public void obterRadocAsHtml(@PathVariable Long id, HttpServletResponse response) {

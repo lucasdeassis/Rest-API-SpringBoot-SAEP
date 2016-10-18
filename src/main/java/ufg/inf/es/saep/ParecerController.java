@@ -15,7 +15,7 @@ public class ParecerController {
 
     //TODO: xxxxinterface responsavel apenas pelo parecer?
     @Autowired
-    private ApplicationServiceLayerSaepParecer asls;
+    private ApplicationServiceLayerSaep asls;
     
     // define a url a ser acessada pelo cliente e o metodo
     @RequestMapping(value="/parecer/saep/{id}", method=RequestMethod.GET, headers="Accept=text/html")
