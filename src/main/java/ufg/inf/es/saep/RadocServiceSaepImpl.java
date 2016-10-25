@@ -15,8 +15,8 @@ import com.itextpdf.text.pdf.PdfWriter;
 @Service
 public abstract class RadocServiceSaepImpl implements ApplicationServiceLayerSaep {
 	@Override
-	public InputStream radocAsHtml(Long idDocumento) {
-					String html = "Radoc numero " + idDocumento + "!";
+	public InputStream radocAsHtml(Long idRadoc) {
+					String html = "Radoc numero " + idRadoc + "!";
 	                InputStream is = new ByteArrayInputStream(html.getBytes(StandardCharsets.UTF_8));
 	                return is;
 	                
@@ -24,7 +24,7 @@ public abstract class RadocServiceSaepImpl implements ApplicationServiceLayerSae
 	
 
 	@Override
-	public InputStream radocAsPdf(Long idParecer) {
+	public InputStream radocAsPdf(Long idRadoc) {
 	    ByteArrayOutputStream out = new ByteArrayOutputStream();            
 	    
 	    //TODO: definir o titulo do documento PDF
@@ -46,4 +46,14 @@ public abstract class RadocServiceSaepImpl implements ApplicationServiceLayerSae
 		return null;
 	}
 
+             //TODO: finalizar metodo
+        @Override
+       public boolean criarRadoc(Long idRadoc, InputStream parecer){
+           //Caso o radoc com o id fornecido ja exista, retorna ERRO
+           if(idRadoc == 13){
+               return false;
+           }
+           else //Aqui supoe-se que seja criado o radoc no servidor e retorna OK
+               return true;
+       }
 }
