@@ -31,10 +31,9 @@ public class ParecerController extends SaepController {
     }
     
     //TODO: aceitar o multipart/form-data tbm?
-    @RequestMapping(value="/saep/parecer/{id}", method = RequestMethod.POST, 
-    		headers = {"Content-Type=application/x-www-form-urlencoded"
-    				})
-    public void criarParecer(@PathVariable Long id, @RequestBody InputStream parecer, HttpServletResponse response){
+    @RequestMapping(value="/saep/parecer/{id}", method = RequestMethod.POST,
+    		consumes= {"application/x-www-form-urlencoded","multipart/form-data" })
+    public void criarParecer(@PathVariable Long id, InputStream parecer, HttpServletResponse response){
         boolean statusParecer = asls.criarParecer(id, parecer);
         if(statusParecer) response.setStatus(201);
         else response.setStatus(409);
