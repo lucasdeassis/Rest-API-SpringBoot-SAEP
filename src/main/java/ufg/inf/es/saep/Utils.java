@@ -27,9 +27,7 @@ public class Utils {
             IOUtils.copy(is, response.getOutputStream());
             response.flushBuffer();
         } catch (IOException e) {
-            //TODO: LOG error
             Logger.getLogger(Utils.class.getName()).log(Level.SEVERE, null, e);
-            //TODO: status é 501?
             response.setStatus(501);
         }
     }

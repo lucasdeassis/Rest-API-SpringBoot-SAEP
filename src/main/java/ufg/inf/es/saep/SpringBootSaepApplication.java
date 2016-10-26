@@ -6,7 +6,6 @@ import org.springframework.context.annotation.ComponentScan;
 
 @ComponentScan
 @SpringBootApplication
-
 public class SpringBootSaepApplication {
 
     public static void main(String[] args) {
