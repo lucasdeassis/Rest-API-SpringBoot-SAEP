@@ -1,23 +1,36 @@
 package ufg.inf.es.saep;
 
 import java.io.InputStream;
+import java.util.logging.Level;
+import java.util.logging.Logger;
 
 import javax.servlet.http.HttpServletResponse;
 
 import org.springframework.web.bind.annotation.PathVariable;
-import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.RestController;
 
+/**
+ * Para cada requisição HTTP, uma nova thread será lançada para respondê-la.
+ * 
+ * @RestController adiciona classe como @Controller e como @ResponseBody,
+ * indicando que será um bean e o retorno de seus métodos será anexado ao ResponseBody
+ * da resposta http.
+ */
 @RestController
 public class ParecerController extends SaepController {
 
-    // define a url a ser acessada pelo cliente e o metodo
+    public ParecerController(ApplicationServiceLayerSaep asls) {
+		super(asls);
+	}
+
+	// define a url a ser acessada pelo cliente e o metodo
     @RequestMapping(value = "/saep/parecer/{id}", method = RequestMethod.GET, headers = "Accept=text/html")
     public void obterParecerAsHtml(@PathVariable Long id, HttpServletResponse response) {
     	InputStream htmlStream = asls.parecerAsHtml(id);       
         response.setContentType("text/html");
+        Logger.getLogger(asls.getClass().getName()).log(Level.SEVERE, asls.toString());
         Utils.flushBuffer(htmlStream, response);
 
     }

@@ -1,6 +1,8 @@
 package ufg.inf.es.saep;
 
 import java.io.InputStream;
+import java.util.logging.Level;
+import java.util.logging.Logger;
 
 import javax.servlet.http.HttpServletResponse;
 
@@ -9,13 +11,26 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.RestController;
 
+/**
+ * Para cada requisição HTTP, uma nova thread será lançada para respondê-la.
+ * 
+ * @RestController adiciona classe como @Controller e como @ResponseBody,
+ * indicando que será um bean e o retorno de seus métodos será anexado ao ResponseBody
+ * da resposta http.
+ */
 @RestController
 public class RadocController extends SaepController{
 
-    @RequestMapping(value="/saep/radoc/{id}", method=RequestMethod.GET, headers="Accept=text/html")
+    public RadocController(ApplicationServiceLayerSaep asls) {
+		super(asls);
+	}
+
+
+	@RequestMapping(value="/saep/radoc/{id}", method=RequestMethod.GET, headers="Accept=text/html")
     public void obterRadocAsHtml(@PathVariable Long id, HttpServletResponse response) {
     	InputStream htmlStream = asls.radocAsHtml(id);
     	response.setContentType("text/html");
+        Logger.getLogger(asls.getClass().getName()).log(Level.SEVERE, asls.toString());
     	Utils.flushBuffer(htmlStream, response);
     }
     
