@@ -12,4 +12,14 @@ O Maven Wrapper e utilizado para executar. Para iniciar o servidor em `localhost
 
  Para criar um jar use: ```sh ./mvnw clean package```. Para dar `clean` no projeto rode ```sh ./mvnw clean```.
 
- O recurso de demonstração é o `parecer` disponível em `/parecer/saep/{id}`.
+## Referência
+
+ O recurso de `parecer` está disponível em `saep/parecer/{id}`. 
+ 
+ Outros recursos implementados foram: 
+
+*  radoc em `saep/radoc/{id}`
+
+* status em `saep/status`
+ 	
+Atuais recursos e os demais serão implementados de acordo com a API do SAEP a ser atualizada [aqui](http://docs.saep.apiary.io/#)

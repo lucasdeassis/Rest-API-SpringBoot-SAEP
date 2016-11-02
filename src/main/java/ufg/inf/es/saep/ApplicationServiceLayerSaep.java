@@ -1,7 +1,6 @@
 package ufg.inf.es.saep;
 
 import java.io.InputStream;
-import org.springframework.stereotype.Component;
 
 public interface ApplicationServiceLayerSaep {
 	public InputStream parecerAsHtml(Long idDocumento);
