@@ -50,4 +50,11 @@ public class ParecerController extends SaepController {
         if(statusParecer) response.setStatus(201);
         else response.setStatus(409);
     }
+    
+    @RequestMapping(value="/saep/parecer/{id}", method=RequestMethod.DELETE)
+    public void deletarParecer(@PathVariable Long id, HttpServletResponse response) {
+    	boolean statusDeletado = asls.deletarRadoc(id);
+        if(statusDeletado) response.setStatus(200);
+        else response.setStatus(404);
+    }
 }

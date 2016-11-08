@@ -26,7 +26,7 @@ public class RadocController extends SaepController{
 	}
 
 
-	@RequestMapping(value="/saep/radoc/{id}", method=RequestMethod.GET, headers="Accept=text/html")
+	@RequestMapping(value="/saep/radoc/{id}", method=RequestMethod.GET, produces="text/html")
     public void obterRadocAsHtml(@PathVariable Long id, HttpServletResponse response) {
     	InputStream htmlStream = asls.radocAsHtml(id);
     	response.setContentType("text/html");
@@ -34,7 +34,7 @@ public class RadocController extends SaepController{
     }
     
     
-    @RequestMapping(value="/saep/radoc/{id}", method=RequestMethod.GET, headers="Accept=application/pdf")
+    @RequestMapping(value="/saep/radoc/{id}", method=RequestMethod.GET, produces="application/pdf")
     public void obterRadocAsPdf(@PathVariable Long id, HttpServletResponse response) {
     	InputStream pdfStream = asls.radocAsPdf(id);
     	response.setContentType("application/pdf");
@@ -49,6 +49,13 @@ public class RadocController extends SaepController{
         boolean statusRadoc = asls.criarRadoc(id, radoc);
         if(statusRadoc) response.setStatus(201);
         else response.setStatus(409);
+    }
+    
+    @RequestMapping(value="/saep/radoc/{id}", method=RequestMethod.DELETE)
+    public void deletarRadoc(@PathVariable Long id, HttpServletResponse response) {
+    	boolean statusDeletado = asls.deletarRadoc(id);
+        if(statusDeletado) response.setStatus(200);
+        else response.setStatus(404);
     }
 }
 

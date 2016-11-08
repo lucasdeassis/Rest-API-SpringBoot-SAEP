@@ -15,8 +15,15 @@ public interface ApplicationServiceLayerSaep {
 	public boolean criarParecer(Long idDocumento, InputStream parecer);
 
 	public boolean criarRadoc(Long idDocumento, InputStream radoc);
+
 	
 	public int obterTamanhoParecer(Long idDocumento);
 	
 	public int obterTamanhoRadoc(Long idDocumento);
+
+        
+        public boolean deletarParecer(Long idDocumento);
+        
+        public boolean deletarRadoc(Long idDocumento);
+
 }

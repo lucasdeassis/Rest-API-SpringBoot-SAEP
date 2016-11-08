@@ -14,7 +14,7 @@ public abstract class SaepController {
 	/**
 	 * Injeção de Dependência de asls realizada pelo Spring.
 	 *
-	 * @param asls Instância de serviço que é gerenciada pelo Spring. Por padrão esta instãncia é
+	 * @param asls Instância de serviço que é gerenciada pelo Spring. Por padrão esta instancia é
 	 * Singleton, isto é, criada apenas uma vez durante o programa e usada por RadocController
 	 * e ParecerController.
 	 */
