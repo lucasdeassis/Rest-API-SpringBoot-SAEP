@@ -96,4 +96,16 @@ public class ApplicationServiceLayerSaepImpl implements ApplicationServiceLayerS
 			return true;
 	}
 
+	@Override
+	public int obterTamanhoParecer(Long idParecer) {
+		if (idParecer == 13) return 0;
+		else return 200;
+	}
+
+	@Override
+	public int obterTamanhoRadoc(Long idRadoc) {
+		if (idRadoc == 13) return 0;
+		else return 200;
+	}
+
 }

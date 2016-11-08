@@ -30,8 +30,7 @@ public class RadocController extends SaepController{
     public void obterRadocAsHtml(@PathVariable Long id, HttpServletResponse response) {
     	InputStream htmlStream = asls.radocAsHtml(id);
     	response.setContentType("text/html");
-        Logger.getLogger(asls.getClass().getName()).log(Level.SEVERE, asls.toString());
-    	Utils.flushBuffer(htmlStream, response);
+    	Utils.flushBuffer(htmlStream, response, asls.obterTamanhoRadoc(id));
     }
     
     
@@ -40,7 +39,7 @@ public class RadocController extends SaepController{
     	InputStream pdfStream = asls.radocAsPdf(id);
     	response.setContentType("application/pdf");
     	response.setHeader("Content-Disposition", "inline; filename=\"radoc"+id+".pdf\"");
-    	Utils.flushBuffer(pdfStream, response);
+    	Utils.flushBuffer(pdfStream, response, asls.obterTamanhoRadoc(id));
     }
     
     //TODO: aceitar o multipart/form-data tbm?

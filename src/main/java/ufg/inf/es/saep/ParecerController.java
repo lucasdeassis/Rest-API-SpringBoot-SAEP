@@ -30,8 +30,7 @@ public class ParecerController extends SaepController {
     public void obterParecerAsHtml(@PathVariable Long id, HttpServletResponse response) {
     	InputStream htmlStream = asls.parecerAsHtml(id);       
         response.setContentType("text/html");
-        Logger.getLogger(asls.getClass().getName()).log(Level.SEVERE, asls.toString());
-        Utils.flushBuffer(htmlStream, response);
+        Utils.flushBuffer(htmlStream, response, asls.obterTamanhoParecer(id));
 
     }
 
@@ -40,7 +39,7 @@ public class ParecerController extends SaepController {
         InputStream pdfStream = asls.parecerAsPdf(id);
         response.setContentType("application/pdf");
         response.setHeader("Content-Disposition", "inline; filename=\"parecer" + id + ".pdf\"");
-        Utils.flushBuffer(pdfStream, response);
+        Utils.flushBuffer(pdfStream, response, asls.obterTamanhoParecer(id));
     }
     
     //TODO: aceitar o multipart/form-data tbm?
