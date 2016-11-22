@@ -25,5 +25,12 @@ public interface ApplicationServiceLayerSaep {
         public boolean deletarParecer(Long idDocumento);
         
         public boolean deletarRadoc(Long idDocumento);
+        
+        
+        public InputStream obterResolucao(Long idDocumento);
+        
+        public boolean criarResolucao(Long idResolucao, InputStream resolucao);
+        
+        public boolean deletarResolucao(Long idDocumento);
 
 }
