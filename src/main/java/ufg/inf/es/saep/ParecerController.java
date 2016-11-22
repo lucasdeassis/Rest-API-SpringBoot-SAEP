@@ -1,8 +1,6 @@
 package ufg.inf.es.saep;
 
 import java.io.InputStream;
-import java.util.logging.Level;
-import java.util.logging.Logger;
 
 import javax.servlet.http.HttpServletResponse;
 
@@ -26,7 +24,7 @@ public class ParecerController extends SaepController {
 	}
 
 	// define a url a ser acessada pelo cliente e o metodo
-    @RequestMapping(value = "/saep/parecer/{id}", method = RequestMethod.GET, headers = "Accept=text/html")
+    @RequestMapping(value = "/saep/parecer/{id}", method = RequestMethod.GET, produces = "text/html")
     public void obterParecerAsHtml(@PathVariable Long id, HttpServletResponse response) {
     	InputStream htmlStream = asls.parecerAsHtml(id);       
         response.setContentType("text/html");
@@ -34,7 +32,7 @@ public class ParecerController extends SaepController {
 
     }
 
-    @RequestMapping(value = "/saep/parecer/{id}", method = RequestMethod.GET, headers = "Accept=application/pdf")
+    @RequestMapping(value = "/saep/parecer/{id}", method = RequestMethod.GET, produces = "application/pdf")
     public void obterParecerAsPdf(@PathVariable Long id, HttpServletResponse response) {
         InputStream pdfStream = asls.parecerAsPdf(id);
         response.setContentType("application/pdf");

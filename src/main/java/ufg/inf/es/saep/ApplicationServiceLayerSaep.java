@@ -25,5 +25,9 @@ public interface ApplicationServiceLayerSaep {
         public boolean deletarParecer(Long idDocumento);
         
         public boolean deletarRadoc(Long idDocumento);
+        
+    public InputStream observacoesAsJson(Long idDocumento);
+    
+    public int obterTamanhoObservacoes(Long idParecer);
 
 }
