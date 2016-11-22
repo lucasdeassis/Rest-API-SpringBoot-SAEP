@@ -103,7 +103,7 @@ public class ApplicationServiceLayerSaepImpl implements ApplicationServiceLayerS
 
     // TODO: finalizar metodo
     @Override
-    public boolean criarRadoc(Long idRadoc, InputStream parecer) {
+    public boolean criarRadoc(Long idRadoc, InputStream radoc) {
         // Caso o radoc com o id fornecido ja exista, retorna ERRO
         if (idRadoc == 13) {
         	radocLength = 0;
@@ -171,5 +171,34 @@ public class ApplicationServiceLayerSaepImpl implements ApplicationServiceLayerS
 	public int obterTamanhoObservacoes(Long idParecer) {
 		return observacoesLength;
 	}
+
+    @Override
+    public boolean criarResolucao(Long idResolucao, InputStream resolucao) {
+        // Caso a resolucao com o id fornecido ja exista, retorna ERRO
+        if (idResolucao == 13) {
+            return false;
+        } else {// Aqui supoe-se que seja criada a resolucao no servidor e retorna OK
+            return true;
+        }
+    }
+    
+    @Override
+    public boolean deletarResolucao(Long idDocumento) {
+        // Caso a resolucao com o id fornecido não exista, retorna ERRO
+        if (idDocumento == 13) {
+            return false;
+        } else // Aqui supoe-se que seja deletada a resolucao no servidor e retorna OK
+        {
+            return true;
+        }
+    }
+
+    //TODO: Saber qual o tipo de accept será a resolucao
+    @Override
+    public InputStream obterResolucao(Long idDocumento) {
+        throw new UnsupportedOperationException("Not supported yet."); 
+    }
+    
+
 
 }

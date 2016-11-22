@@ -22,12 +22,18 @@ public interface ApplicationServiceLayerSaep {
 	public int obterTamanhoRadoc(Long idDocumento);
 
         
-        public boolean deletarParecer(Long idDocumento);
-        
-        public boolean deletarRadoc(Long idDocumento);
-        
+    public boolean deletarParecer(Long idDocumento);
+    
+    public boolean deletarRadoc(Long idDocumento);
+    
     public InputStream observacoesAsJson(Long idDocumento);
     
     public int obterTamanhoObservacoes(Long idParecer);
+    
+    public InputStream obterResolucao(Long idDocumento);
+    
+    public boolean criarResolucao(Long idResolucao, InputStream resolucao);
+    
+    public boolean deletarResolucao(Long idDocumento);
 
 }
