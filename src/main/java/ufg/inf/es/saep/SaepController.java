@@ -1,8 +1,5 @@
 package ufg.inf.es.saep;
 
-
-import org.springframework.beans.factory.annotation.Autowired;
-
 public abstract class SaepController {
 
 	/**
@@ -14,11 +11,9 @@ public abstract class SaepController {
 	/**
 	 * Injeção de Dependência de asls realizada pelo Spring.
 	 *
-	 * @param asls Instância de serviço que é gerenciada pelo Spring. Por padrão esta instancia é
-	 * Singleton, isto é, criada apenas uma vez durante o programa e usada por RadocController
-	 * e ParecerController.
+	 * @param asls Instância de serviço que é gerenciada pelo Spring. esta instância é RequestScoped,
+	 * sendo criada sempre que uma nova requisição HTTP for disparada e respondida.
 	 */
-	@Autowired
 	public SaepController(ApplicationServiceLayerSaep asls) {
 		this.asls = asls;
 	}

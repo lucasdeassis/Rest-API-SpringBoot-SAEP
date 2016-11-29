@@ -26,6 +26,10 @@ public class ParecerController extends SaepController {
 	// define a url a ser acessada pelo cliente e o metodo
     @RequestMapping(value = "/saep/parecer/{id}", method = RequestMethod.GET, produces = "text/html")
     public void obterParecerAsHtml(@PathVariable Long id, HttpServletResponse response) {
+    	/* simula um delay de 20 segundos para retornar o parecer em html 
+    	 * e checar o ciclo de vida de ApplicationServiceLayerSaep
+    	*/
+    	Utils.delayRequestReturn(asls, 20);
     	InputStream htmlStream = asls.parecerAsHtml(id);       
         response.setContentType("text/html");
         Utils.flushBuffer(htmlStream, response, asls.obterTamanhoParecer(id));

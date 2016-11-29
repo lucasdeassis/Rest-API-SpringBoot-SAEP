@@ -8,6 +8,8 @@ import java.util.ArrayList;
 
 import org.json.JSONObject;
 import org.springframework.stereotype.Component;
+import org.springframework.stereotype.Service;
+import org.springframework.web.context.annotation.RequestScope;
 
 import com.itextpdf.text.Document;
 import com.itextpdf.text.DocumentException;
@@ -15,11 +17,18 @@ import com.itextpdf.text.Paragraph;
 import com.itextpdf.text.pdf.PdfWriter;
 
 @Component
+@RequestScope
+/**
+ * 
+ * Classe que implementa a camada de serviço da aplicação.
+ *
+ */
 public class ApplicationServiceLayerSaepImpl implements ApplicationServiceLayerSaep {
 
 	private int observacoesLength;
 	private int parecerLength;
 	private int radocLength;
+	private int resolucaoLength;
 	
     @Override
     public InputStream parecerAsHtml(Long idParecer) {
@@ -199,6 +208,9 @@ public class ApplicationServiceLayerSaepImpl implements ApplicationServiceLayerS
         throw new UnsupportedOperationException("Not supported yet."); 
     }
     
-
+    @Override
+    public int obterTamanhoResolucao(Long idDocumento){
+    	return resolucaoLength;
+    }
 
 }

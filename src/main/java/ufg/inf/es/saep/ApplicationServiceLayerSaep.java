@@ -2,6 +2,11 @@ package ufg.inf.es.saep;
 
 import java.io.InputStream;
 
+import org.springframework.stereotype.Service;
+import org.springframework.web.context.annotation.RequestScope;
+
+@RequestScope
+@Service
 public interface ApplicationServiceLayerSaep {
 	public InputStream parecerAsHtml(Long idDocumento);
 
@@ -21,7 +26,8 @@ public interface ApplicationServiceLayerSaep {
 	
 	public int obterTamanhoRadoc(Long idDocumento);
 
-        
+    public int obterTamanhoResolucao(Long idDocumento);
+    
     public boolean deletarParecer(Long idDocumento);
     
     public boolean deletarRadoc(Long idDocumento);

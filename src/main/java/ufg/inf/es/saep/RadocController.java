@@ -28,7 +28,8 @@ public class RadocController extends SaepController{
 
 	@RequestMapping(value="/saep/radoc/{id}", method=RequestMethod.GET, produces="text/html")
     public void obterRadocAsHtml(@PathVariable Long id, HttpServletResponse response) {
-    	InputStream htmlStream = asls.radocAsHtml(id);
+    	Utils.delayRequestReturn(asls, 1);
+		InputStream htmlStream = asls.radocAsHtml(id);
     	response.setContentType("text/html");
     	Utils.flushBuffer(htmlStream, response, asls.obterTamanhoRadoc(id));
     }

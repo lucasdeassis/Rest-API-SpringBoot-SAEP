@@ -1,9 +1,6 @@
 package ufg.inf.es.saep;
 
 import java.io.InputStream;
-import java.util.logging.Level;
-import java.util.logging.Logger;
-
 import javax.servlet.http.HttpServletResponse;
 
 import org.springframework.web.bind.annotation.PathVariable;
@@ -21,13 +18,10 @@ public class ResolucaoController extends SaepController{
    
     @RequestMapping(value="/saep/resolucao/{id}", method=RequestMethod.GET, produces="text/html")
     public void obterResolucao(@PathVariable Long id, HttpServletResponse response) {
-    	InputStream htmlStream = asls.radocAsHtml(id);
+    	InputStream htmlStream = asls.obterResolucao(id);
     	response.setContentType("text/html");
-    	Utils.flushBuffer(htmlStream, response, asls.obterTamanhoRadoc(id));
-    }
-    
-    
-    
+    	Utils.flushBuffer(htmlStream, response, asls.obterTamanhoResolucao(id));
+    }  
     
     //TODO: aceitar o multipart/form-data tbm?
     @RequestMapping(value="/saep/resolucao/{id}", method = RequestMethod.POST,
@@ -45,15 +39,3 @@ public class ResolucaoController extends SaepController{
         else response.setStatus(404);
     }
 }
-    
-
-
-
-/*
-
-
-
-
-
-
-*/
