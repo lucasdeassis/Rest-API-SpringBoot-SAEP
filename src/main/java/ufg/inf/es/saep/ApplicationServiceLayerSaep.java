@@ -5,6 +5,12 @@ import java.io.InputStream;
 import org.springframework.stereotype.Service;
 import org.springframework.web.context.annotation.RequestScope;
 
+
+/* TODO: documentar esta interface, sobre restrições de implementação como o RequestScope e 
+ * documentação de cada método.
+ * 
+ * TODO: Criar própria exceção e dizer quando será lançada
+*/
 @RequestScope
 @Service
 public interface ApplicationServiceLayerSaep {
@@ -16,11 +22,9 @@ public interface ApplicationServiceLayerSaep {
 
 	public InputStream radocAsPdf(Long idDocumento);
 
-	// futuro criarPontuaçao
 	public boolean criarParecer(Long idDocumento, InputStream parecer);
 
 	public boolean criarRadoc(Long idDocumento, InputStream radoc);
-
 	
 	public int obterTamanhoParecer(Long idDocumento);
 	
@@ -36,7 +40,7 @@ public interface ApplicationServiceLayerSaep {
     
     public int obterTamanhoObservacoes(Long idParecer);
     
-    public InputStream obterResolucao(Long idDocumento);
+    public InputStream resolucaoAsHtml(Long idDocumento);
     
     public boolean criarResolucao(Long idResolucao, InputStream resolucao);
     

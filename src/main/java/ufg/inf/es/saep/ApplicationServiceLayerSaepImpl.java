@@ -16,13 +16,13 @@ import com.itextpdf.text.DocumentException;
 import com.itextpdf.text.Paragraph;
 import com.itextpdf.text.pdf.PdfWriter;
 
-@Component
-@RequestScope
+
 /**
  * 
  * Classe que implementa a camada de serviço da aplicação.
  *
  */
+@Component
 public class ApplicationServiceLayerSaepImpl implements ApplicationServiceLayerSaep {
 
 	private int observacoesLength;
@@ -204,8 +204,13 @@ public class ApplicationServiceLayerSaepImpl implements ApplicationServiceLayerS
 
     //TODO: Saber qual o tipo de accept será a resolucao
     @Override
-    public InputStream obterResolucao(Long idDocumento) {
-        throw new UnsupportedOperationException("Not supported yet."); 
+    public InputStream resolucaoAsHtml(Long idDocumento) {
+       // throw new UnsupportedOperationException("Not supported yet."); 
+        String html = "Resolucao numero " + idDocumento + "!";
+        resolucaoLength = html.getBytes(StandardCharsets.UTF_8).length;
+        InputStream is = new ByteArrayInputStream(html.getBytes(StandardCharsets.UTF_8));
+        return is;
+
     }
     
     @Override

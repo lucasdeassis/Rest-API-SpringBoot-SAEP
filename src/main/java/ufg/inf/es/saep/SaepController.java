@@ -1,5 +1,8 @@
 package ufg.inf.es.saep;
 
+import org.springframework.web.context.annotation.RequestScope;
+
+@RequestScope
 public abstract class SaepController {
 
 	/**

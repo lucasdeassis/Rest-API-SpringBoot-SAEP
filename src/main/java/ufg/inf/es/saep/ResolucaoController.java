@@ -18,7 +18,7 @@ public class ResolucaoController extends SaepController{
    
     @RequestMapping(value="/saep/resolucao/{id}", method=RequestMethod.GET, produces="text/html")
     public void obterResolucao(@PathVariable Long id, HttpServletResponse response) {
-    	InputStream htmlStream = asls.obterResolucao(id);
+    	InputStream htmlStream = asls.resolucaoAsHtml(id);
     	response.setContentType("text/html");
     	Utils.flushBuffer(htmlStream, response, asls.obterTamanhoResolucao(id));
     }  
