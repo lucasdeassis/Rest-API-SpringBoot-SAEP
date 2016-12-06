@@ -8,7 +8,6 @@ import java.util.ArrayList;
 
 import org.json.JSONObject;
 import org.springframework.stereotype.Component;
-import org.springframework.stereotype.Service;
 import org.springframework.web.context.annotation.RequestScope;
 
 import com.itextpdf.text.Document;
@@ -23,6 +22,7 @@ import com.itextpdf.text.pdf.PdfWriter;
  *
  */
 @Component
+@RequestScope
 public class ApplicationServiceLayerSaepImpl implements ApplicationServiceLayerSaep {
 
 	private int observacoesLength;

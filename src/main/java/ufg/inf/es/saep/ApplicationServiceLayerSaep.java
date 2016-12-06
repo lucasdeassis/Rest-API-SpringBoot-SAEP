@@ -11,6 +11,17 @@ import org.springframework.web.context.annotation.RequestScope;
  * 
  * TODO: Criar própria exceção e dizer quando será lançada
 */
+/**
+ * Interface da camada de serviço de aplicação da arquitetura do SAEP.
+ * A implementação desta interface deve ter o escopo de requisição, isto é,
+ * a cada requisição HTTP uma instância da implementação deve ser criada.
+ * Para realizar essa configuração através do Spring-boot utiliza-se a anotação @RequestScope
+ * 
+ * Para que a injeção da implementação desta interface seja realizada, é preciso notificar
+ * ao Spring-boot através da anotação @Service ou @Component que a classe implementada é um bean
+ * a ser gerenciado.
+ *
+ */
 @RequestScope
 @Service
 public interface ApplicationServiceLayerSaep {

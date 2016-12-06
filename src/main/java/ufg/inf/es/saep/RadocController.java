@@ -1,8 +1,6 @@
 package ufg.inf.es.saep;
 
 import java.io.InputStream;
-import java.util.logging.Level;
-import java.util.logging.Logger;
 
 import javax.servlet.http.HttpServletResponse;
 
