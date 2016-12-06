@@ -228,7 +228,7 @@ public class ApplicationServiceLayerSaepImpl implements ApplicationServiceLayerS
         resolucoesLista.add("2");
         resolucoesLista.add("3");
 
-        resolucoesJSON.put("Lista de Resoluções" + resolucoesLista);
+        resolucoesJSON.put("Lista de Resoluções",resolucoesLista);
 
         String stringJSON = resolucoesJSON.toString();
         listaResolucoesLength = stringJSON.getBytes().length;

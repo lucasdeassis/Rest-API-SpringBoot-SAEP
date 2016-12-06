@@ -15,6 +15,7 @@ public class ResolucaoController extends SaepController{
         super(asls);
     }
 
+    
    
     @RequestMapping(value="/saep/resolucao/{id}", method=RequestMethod.GET, produces="text/html")
     public void obterResolucao(@PathVariable Long id, HttpServletResponse response) {
@@ -38,4 +39,10 @@ public class ResolucaoController extends SaepController{
         if(statusDeletado) response.setStatus(200);
         else response.setStatus(404);
     }
+    
+    @RequestMapping(value="/saep/resolucoes", method=RequestMethod.GET,
+			produces="application/json")
+	public void obterListaResolucoes(HttpServletResponse response) {
+		Utils.flushBuffer(asls.listaResolucoes(), response, asls.obterTamanhoListaResolucoes());
+	}
 }
