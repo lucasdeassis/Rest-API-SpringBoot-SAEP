@@ -4,13 +4,16 @@ Implementação da REST API usando SpringBoot. Inclui verificação de seguranç
 
 ## Executando
 
-O Maven Wrapper e utilizado para executar. Para iniciar o servidor em `localhost:8080`, rode o comando:
+Para dar build no projeto, rode o comando:
 
  ```sh 
- 	./mvnw spring-boot:run
+ 	mvn package
  ```
+Para executar: 
 
- Para criar um jar use: ```sh ./mvnw clean package```. Para dar `clean` no projeto rode ```sh ./mvnw clean```.
+```sh 
+ 	java -jar target/gs-rest-service-0.1.0.jar
+ ```
 
 ## Referência
  
