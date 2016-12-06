@@ -32,7 +32,8 @@ public class ApplicationServiceLayerSaepImpl implements ApplicationServiceLayerS
 
     @Override
     public InputStream parecerAsHtml(Long idParecer) {
-        String html = "Parecer numero " + idParecer + "!";
+        String html = "<!DOCTYPE html><html><head><title></title></head><body>"
+                + "Parecer número " + idParecer + "</body></html>";
         parecerLength = html.getBytes(StandardCharsets.UTF_8).length;
 
         InputStream is = new ByteArrayInputStream(html.getBytes(StandardCharsets.UTF_8));
@@ -80,7 +81,8 @@ public class ApplicationServiceLayerSaepImpl implements ApplicationServiceLayerS
 
     @Override
     public InputStream radocAsHtml(Long idRadoc) {
-        String html = "Radoc numero " + idRadoc + "!";
+        String html = "<!DOCTYPE html><html><head><title></title></head><body>"
+                + "Radoc número " + idRadoc + "</body></html>";
         radocLength = html.getBytes(StandardCharsets.UTF_8).length;
         InputStream is = new ByteArrayInputStream(html.getBytes(StandardCharsets.UTF_8));
         return is;
@@ -206,7 +208,8 @@ public class ApplicationServiceLayerSaepImpl implements ApplicationServiceLayerS
     @Override
     public InputStream resolucaoAsHtml(Long idDocumento) {
         // throw new UnsupportedOperationException("Not supported yet."); 
-        String html = "Resolucao numero " + idDocumento + "!";
+        String html = "<!DOCTYPE html><html><head><title></title></head><body>"
+                + "Resolucao número " + idDocumento + "</body></html>";
         resolucaoLength = html.getBytes(StandardCharsets.UTF_8).length;
         InputStream is = new ByteArrayInputStream(html.getBytes(StandardCharsets.UTF_8));
         return is;
@@ -228,14 +231,14 @@ public class ApplicationServiceLayerSaepImpl implements ApplicationServiceLayerS
         resolucoesLista.add("2");
         resolucoesLista.add("3");
 
-        resolucoesJSON.put("Lista de Resoluções",resolucoesLista);
+        resolucoesJSON.put("Lista de Resoluções", resolucoesLista);
 
         String stringJSON = resolucoesJSON.toString();
         listaResolucoesLength = stringJSON.getBytes().length;
 
         return new ByteArrayInputStream(stringJSON.getBytes());
     }
-    
+
     @Override
     public int obterTamanhoListaResolucoes() {
         return listaResolucoesLength;

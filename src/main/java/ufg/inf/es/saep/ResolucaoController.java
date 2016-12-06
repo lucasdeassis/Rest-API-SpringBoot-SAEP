@@ -43,6 +43,7 @@ public class ResolucaoController extends SaepController{
     @RequestMapping(value="/saep/resolucoes", method=RequestMethod.GET,
 			produces="application/json")
 	public void obterListaResolucoes(HttpServletResponse response) {
+                response.setContentType("application/json");
 		Utils.flushBuffer(asls.listaResolucoes(), response, asls.obterTamanhoListaResolucoes());
 	}
 }

@@ -17,6 +17,7 @@ public class ObservacoesController extends SaepController{
 	@RequestMapping(value="/saep/observacoes/{id}", method=RequestMethod.GET,
 			produces="application/json")
 	public void obterObservacoes(@PathVariable Long id, HttpServletResponse response) {
-		Utils.flushBuffer(asls.observacoesAsJson(id), response, asls.obterTamanhoObservacoes(id));
+            response.setContentType("application/json");
+            Utils.flushBuffer(asls.observacoesAsJson(id), response, asls.obterTamanhoObservacoes(id));
 	}
 }
