@@ -15,9 +15,8 @@ import com.itextpdf.text.DocumentException;
 import com.itextpdf.text.Paragraph;
 import com.itextpdf.text.pdf.PdfWriter;
 
-
 /**
- * 
+ *
  * Classe que implementa a camada de serviço da aplicação.
  *
  */
@@ -25,16 +24,17 @@ import com.itextpdf.text.pdf.PdfWriter;
 @RequestScope
 public class ApplicationServiceLayerSaepImpl implements ApplicationServiceLayerSaep {
 
-	private int observacoesLength;
-	private int parecerLength;
-	private int radocLength;
-	private int resolucaoLength;
-	
+    private int observacoesLength;
+    private int parecerLength;
+    private int radocLength;
+    private int resolucaoLength;
+    private int listaResolucoesLength;
+
     @Override
     public InputStream parecerAsHtml(Long idParecer) {
-        String html = "Parecer numero " + idParecer + "!";        
+        String html = "Parecer numero " + idParecer + "!";
         parecerLength = html.getBytes(StandardCharsets.UTF_8).length;
-        
+
         InputStream is = new ByteArrayInputStream(html.getBytes(StandardCharsets.UTF_8));
         return is;
 
@@ -56,7 +56,7 @@ public class ApplicationServiceLayerSaepImpl implements ApplicationServiceLayerS
             document.close();
 
             parecerLength = out.toByteArray().length;
-            
+
             return new ByteArrayInputStream(out.toByteArray());
 
         } catch (DocumentException e) {
@@ -69,7 +69,7 @@ public class ApplicationServiceLayerSaepImpl implements ApplicationServiceLayerS
     public boolean criarParecer(Long idParecer, InputStream parecer) {
         // Caso o parecer com o id fornecido ja exista, retorna ERRO
         if (idParecer == 13) {
-        	parecerLength = 0;
+            parecerLength = 0;
             return false;
         } else // Aqui supoe-se que seja criado o parecer no servidor e retorna
         // OK
@@ -101,7 +101,7 @@ public class ApplicationServiceLayerSaepImpl implements ApplicationServiceLayerS
 
             document.close();
             radocLength = out.toByteArray().length;
-            
+
             return new ByteArrayInputStream(out.toByteArray());
 
         } catch (DocumentException e) {
@@ -115,7 +115,7 @@ public class ApplicationServiceLayerSaepImpl implements ApplicationServiceLayerS
     public boolean criarRadoc(Long idRadoc, InputStream radoc) {
         // Caso o radoc com o id fornecido ja exista, retorna ERRO
         if (idRadoc == 13) {
-        	radocLength = 0;
+            radocLength = 0;
             return false;
         } else // Aqui supoe-se que seja criado o radoc no servidor e retorna OK
         {
@@ -127,7 +127,7 @@ public class ApplicationServiceLayerSaepImpl implements ApplicationServiceLayerS
     public boolean deletarParecer(Long idDocumento) {
         // Caso o parecer com o id fornecido não exista, retorna ERRO
         if (idDocumento == 15) {
-        	parecerLength = 0;
+            parecerLength = 0;
             return false;
         } else // Aqui supoe-se que seja deletado o parecer no servidor e retorna OK
         {
@@ -139,7 +139,7 @@ public class ApplicationServiceLayerSaepImpl implements ApplicationServiceLayerS
     public boolean deletarRadoc(Long idDocumento) {
         // Caso o radoc com o id fornecido não exista, retorna ERRO
         if (idDocumento == 15) {
-        	radocLength = 0;
+            radocLength = 0;
             return false;
         } else // Aqui supoe-se que seja deletado o radoc no servidor e retorna OK
         {
@@ -147,39 +147,39 @@ public class ApplicationServiceLayerSaepImpl implements ApplicationServiceLayerS
         }
     }
 
-	@Override
-	public int obterTamanhoParecer(Long idParecer) {
-		return parecerLength;
-	}
+    @Override
+    public int obterTamanhoParecer(Long idParecer) {
+        return parecerLength;
+    }
 
-	@Override
-	public int obterTamanhoRadoc(Long idRadoc) {
-		 return radocLength;
-	}
+    @Override
+    public int obterTamanhoRadoc(Long idRadoc) {
+        return radocLength;
+    }
 
-	@Override
-	public InputStream observacoesAsJson(Long idDocumento) {
-		JSONObject observacoesJSON  = new JSONObject();
-		
-		ArrayList<String> observacoesLista = new ArrayList<String>();
-		
-		observacoesLista.add("Data de parecer inadequada.");
-		observacoesLista.add("Período de férias descrito não confere com o documentado.");
-		observacoesLista.add("Cronograma de horas cumpridas não confere com o plano de atividades.");
-		observacoesLista.add("Faltas excessivas para licença.");
-		
-		observacoesJSON.put("Observações Parecer" + idDocumento, observacoesLista);
-		
-		String stringJSON = observacoesJSON.toString();
-		observacoesLength = stringJSON.getBytes().length;
-		
-		return new ByteArrayInputStream(stringJSON.getBytes());
-	}
+    @Override
+    public InputStream observacoesAsJson(Long idDocumento) {
+        JSONObject observacoesJSON = new JSONObject();
 
-	@Override
-	public int obterTamanhoObservacoes(Long idParecer) {
-		return observacoesLength;
-	}
+        ArrayList<String> observacoesLista = new ArrayList<String>();
+
+        observacoesLista.add("Data de parecer inadequada.");
+        observacoesLista.add("Período de férias descrito não confere com o documentado.");
+        observacoesLista.add("Cronograma de horas cumpridas não confere com o plano de atividades.");
+        observacoesLista.add("Faltas excessivas para licença.");
+
+        observacoesJSON.put("Observações Parecer" + idDocumento, observacoesLista);
+
+        String stringJSON = observacoesJSON.toString();
+        observacoesLength = stringJSON.getBytes().length;
+
+        return new ByteArrayInputStream(stringJSON.getBytes());
+    }
+
+    @Override
+    public int obterTamanhoObservacoes(Long idParecer) {
+        return observacoesLength;
+    }
 
     @Override
     public boolean criarResolucao(Long idResolucao, InputStream resolucao) {
@@ -190,7 +190,7 @@ public class ApplicationServiceLayerSaepImpl implements ApplicationServiceLayerS
             return true;
         }
     }
-    
+
     @Override
     public boolean deletarResolucao(Long idDocumento) {
         // Caso a resolucao com o id fornecido não exista, retorna ERRO
@@ -205,17 +205,39 @@ public class ApplicationServiceLayerSaepImpl implements ApplicationServiceLayerS
     //TODO: Saber qual o tipo de accept será a resolucao
     @Override
     public InputStream resolucaoAsHtml(Long idDocumento) {
-       // throw new UnsupportedOperationException("Not supported yet."); 
+        // throw new UnsupportedOperationException("Not supported yet."); 
         String html = "Resolucao numero " + idDocumento + "!";
         resolucaoLength = html.getBytes(StandardCharsets.UTF_8).length;
         InputStream is = new ByteArrayInputStream(html.getBytes(StandardCharsets.UTF_8));
         return is;
 
     }
-    
+
     @Override
-    public int obterTamanhoResolucao(Long idDocumento){
-    	return resolucaoLength;
+    public int obterTamanhoResolucao(Long idDocumento) {
+        return resolucaoLength;
     }
 
+    @Override
+    public InputStream listaResolucoes() {
+        JSONObject resolucoesJSON = new JSONObject();
+
+        ArrayList<String> resolucoesLista = new ArrayList<String>();
+
+        resolucoesLista.add("1");
+        resolucoesLista.add("2");
+        resolucoesLista.add("3");
+
+        resolucoesJSON.put("Lista de Resoluções" + resolucoesLista);
+
+        String stringJSON = resolucoesJSON.toString();
+        listaResolucoesLength = stringJSON.getBytes().length;
+
+        return new ByteArrayInputStream(stringJSON.getBytes());
+    }
+    
+    @Override
+    public int obterTamanhoListaResolucoes() {
+        return listaResolucoesLength;
+    }
 }

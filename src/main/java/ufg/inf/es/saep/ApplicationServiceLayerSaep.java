@@ -149,6 +149,13 @@ public interface ApplicationServiceLayerSaep {
      * </code> possui.
      */
     public int obterTamanhoObservacoes(Long idParecer);
+    
+    /**
+     * Retorna o tamanho da lista de identificadores de resoluções gerenciadas pelo SAEP.
+     *
+     * @return quantidade de bytes da lista de identificadores de resoluções.
+     */
+    public int obterTamanhoListaResolucoes();
 
     /**
      * Exclui o parecer docente associado ao identificador fornecido.
@@ -159,7 +166,7 @@ public interface ApplicationServiceLayerSaep {
      * </code> fornecido.
      */
     public boolean deletarParecer(Long idDocumento);
-
+    
     /**
      * Exclui o radoc associado ao identificador fornecido.
      *
@@ -180,4 +187,12 @@ public interface ApplicationServiceLayerSaep {
      */
     public boolean deletarResolucao(Long idDocumento);
 
+    /**
+     * Recupera lista de identificadores das resoluções disponíveis gerenciadas pela SAEP.
+     * 
+     * @return {@link java.io.InputStream} contendo um Json com a lista de idenficadores das resoluções.
+     */
+    public InputStream listaResolucoes();
+    
+    
 }
