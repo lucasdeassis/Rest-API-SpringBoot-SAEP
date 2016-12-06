@@ -6,11 +6,7 @@ import org.springframework.stereotype.Service;
 import org.springframework.web.context.annotation.RequestScope;
 
 
-/* TODO: documentar esta interface, sobre restrições de implementação como o RequestScope e 
- * documentação de cada método.
- * 
- * TODO: Criar própria exceção e dizer quando será lançada
- */
+
 /**
  * Interface da camada de serviço de aplicação da arquitetura do SAEP. A
  * implementação desta interface deve ter o escopo de requisição, isto é, a cada
